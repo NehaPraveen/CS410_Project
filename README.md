@@ -40,16 +40,16 @@ http://localhost:8000/engine/
 The main components involved in this project are listed below
  
 1. Creating an inverted index that contains both term frequency (TF) and inverse document frequency (IDF)
-2. Implmenting the ranker using BM25 ranking methdology
+2. Implementing the ranker using BM25 ranking methdology
 3. Web application created using Python Django
 
 #### Creating Inverted Index: 
-The logic to create inverted index is present in file create_inverted_index.py present within scSearch directory. The *commit_chunk* method withi in the file creates updates the inverted index for the non-zero cell counts and updates the index. The index stores three components *term frequency, document id, and document frequency*
+The logic to create inverted index is present in file create_inverted_index.py present within scSearch directory. The raw dataset is passed as an input and the data is read in chunks with chck size set as 100.  The *commit_chunk* method in the file creates the inverted index for the non-zero gene counts and updates the index. The index stores three components *term frequency, document id, and document frequency*
 
 #### Implementing the ranker using BM25 methodology.
 We have implemeted BM25 ranking methodology to rank the search results. BM25 is a robust ranking methodology that takes into account both term frequency and inverse document frequency. The implementation is present in the file rankers.py within scSearch/engine directory. 
 
-In this file, *fast_ranking* method takes input query as an parameter and fetches the cells from the inverted index based on the inputs. The intermediate result is then passed onto *bm25_score* method that ranks the results based on BM25 formula. The sorted results are then passed on to the web application with an optional cut-off parameter 'k'
+In this file, *fast_ranking* method takes input query as a parameter and fetches the cells from the inverted index based on the inputs. The intermediate result is then passed onto *bm25_score* method that ranks the results based on BM25 formula. The sorted results are then passed on to the web application with an optional cut-off parameter 'k'
 
 #### Web application using Python Django
 We have created a web application to make it easier for the users to search the cells and view the results accrodingly. The web application is created using Pythin Django framework. The implementation of the web application is present under scSearch/engine directory.
