@@ -13,4 +13,17 @@ $(function() {
     $('.delete-gene-card').click(function() {
         $(this).parents('.gene-card').remove();
     });
+
+    $('#search-btn').click(function() {
+        var queryJSON = {};
+        $('.gene-card').each(function() {
+            console.log($(this));
+            queryJSON[$(this).data('gene')] = parseInt($(this).data('weight'));
+        });
+        var queryString = JSON.stringify(queryJSON);
+        $('#results-area').empty().append($('<p>').text('Getting search results...'));
+        $.get('/engine/search/' + queryString + '/', function(data) {
+            $('#results-area').empty().append($(data));
+        });
+    });
 });

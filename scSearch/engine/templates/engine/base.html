@@ -146,7 +146,7 @@
             <!-- All cards -->
             <div style="margin-bottom: 25px" id="cards-holder"></div>
 
-            <button style="float:right" class="w-full bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Search&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
+            <button id="search-btn" style="float:right" class="w-full bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Search&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
 
 
         </div>
@@ -168,165 +168,150 @@
             <!--<button class="bg-indigo-dark hover:bg-indigo-darker text-white text-sm py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">Add New Book</button>-->
             <div class="bg-indigo-dark text-white text-sm py-2 px-4 rounded-full hover:shadow focus:outline-none">476 Results</div>
         </div>
-        <!-- Desktop Stats -->
-        <div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">
 
-            <div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h1>hHP1_AGACCGCGACTA</h1>
-                <div class="flex">
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Cell Subtype</p>
-                        <p class="font-medium text-sm pl-2">exPFC1</p>
-                    </div>
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Number of Genes</p>
-                        <p class="font-medium text-sm pl-2">2289</p>
-                    </div>
-                </div>
-                <div class="pt-6">
-                    <p class="text-indigo text-sm p-2">Number of Transcripts</p>
-                    <p class="font-medium text-sm pl-2 leading-normal">3946</p>
-                </div>
-            </div>
-            <div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h3>Top 5 Highly Expressed Genes</h3>
-                <table class="mt-4 w-full">
-                    <thead class="p-2 text-sm leading-loose border-b text-indigo">
-                    <tr>
-                        <td>Name</td>
-                        <td class="text-center">Expression (TPM)</td>
-                    </tr>
-                    </thead>
-                    <tbody class="p-2 leading-loose text-sm">
-                    <tr class="border-b">
-                        <td class="py-2">KRAS</td>
-                        <td class="py-2 text-center">5</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2">TP53</td>
-                        <td class="py-2 text-center">3</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">SMAD4</td>
-                        <td class="py-2 text-center">1</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--<div class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+        <div id="results-area"></div>
+        <!-- Desktop Stats -->
+        <!--<div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">-->
+
+            <!--<div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h1>hHP1_AGACCGCGACTA</h1>-->
                 <!--<div class="flex">-->
                     <!--<div class="w-1/2">-->
-                        <!--<p class="text-indigo text-sm p-2">Most read format</p>-->
-                        <!--<p class="font-medium text-sm pl-2">Print</p>-->
+                        <!--<p class="text-indigo text-sm p-2">Cell Subtype</p>-->
+                        <!--<p class="font-medium text-sm pl-2">exPFC1</p>-->
                     <!--</div>-->
                     <!--<div class="w-1/2">-->
-                        <!--<p class="text-indigo text-sm p-2">Total read/own</p>-->
-                        <!--<p class="font-medium text-sm pl-2">4/7</p>-->
+                        <!--<p class="text-indigo text-sm p-2">Number of Genes</p>-->
+                        <!--<p class="font-medium text-sm pl-2">2289</p>-->
                     <!--</div>-->
                 <!--</div>-->
                 <!--<div class="pt-6">-->
-                    <!--<p class="text-indigo text-sm p-2">Most re-read book</p>-->
-                    <!--<p class="font-medium text-sm pl-2 leading-normal">Just My Type: A Book About Fonts-->
-                        <!--<br><span class="font-normal">by Simon Garfield</span></p>-->
+                    <!--<p class="text-indigo text-sm p-2">Number of Transcripts</p>-->
+                    <!--<p class="font-medium text-sm pl-2 leading-normal">3946</p>-->
                 <!--</div>-->
             <!--</div>-->
-        </div>
+            <!--<div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h3>Top 5 Highly Expressed Genes</h3>-->
+                <!--<table class="mt-4 w-full">-->
+                    <!--<thead class="p-2 text-sm leading-loose border-b text-indigo">-->
+                    <!--<tr>-->
+                        <!--<td>Name</td>-->
+                        <!--<td class="text-center">Expression (TPM)</td>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody class="p-2 leading-loose text-sm">-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">KRAS</td>-->
+                        <!--<td class="py-2 text-center">5</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">TP53</td>-->
+                        <!--<td class="py-2 text-center">3</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td class="py-2">SMAD4</td>-->
+                        <!--<td class="py-2 text-center">1</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
 
-        <div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">
+        <!--<div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">-->
 
-            <div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h1>PFC-CD_CTCGACGGCCCG</h1>
-                <div class="flex">
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Cell Subtype</p>
-                        <p class="font-medium text-sm pl-2">GABA2</p>
-                    </div>
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Number of Genes</p>
-                        <p class="font-medium text-sm pl-2">1514</p>
-                    </div>
-                </div>
-                <div class="pt-6">
-                    <p class="text-indigo text-sm p-2">Number of Transcripts</p>
-                    <p class="font-medium text-sm pl-2 leading-normal">2222</p>
-                </div>
-            </div>
-            <div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h3>Top 5 Highly Expressed Genes</h3>
-                <table class="mt-4 w-full">
-                    <thead class="p-2 text-sm leading-loose border-b text-indigo">
-                    <tr>
-                        <td>Name</td>
-                        <td class="text-center">Expression (TPM)</td>
-                    </tr>
-                    </thead>
-                    <tbody class="p-2 leading-loose text-sm">
-                    <tr class="border-b">
-                        <td class="py-2">KRAS</td>
-                        <td class="py-2 text-center">5</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2">TP53</td>
-                        <td class="py-2 text-center">3</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">SMAD4</td>
-                        <td class="py-2 text-center">1</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!--<div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h1>PFC-CD_CTCGACGGCCCG</h1>-->
+                <!--<div class="flex">-->
+                    <!--<div class="w-1/2">-->
+                        <!--<p class="text-indigo text-sm p-2">Cell Subtype</p>-->
+                        <!--<p class="font-medium text-sm pl-2">GABA2</p>-->
+                    <!--</div>-->
+                    <!--<div class="w-1/2">-->
+                        <!--<p class="text-indigo text-sm p-2">Number of Genes</p>-->
+                        <!--<p class="font-medium text-sm pl-2">1514</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="pt-6">-->
+                    <!--<p class="text-indigo text-sm p-2">Number of Transcripts</p>-->
+                    <!--<p class="font-medium text-sm pl-2 leading-normal">2222</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h3>Top 5 Highly Expressed Genes</h3>-->
+                <!--<table class="mt-4 w-full">-->
+                    <!--<thead class="p-2 text-sm leading-loose border-b text-indigo">-->
+                    <!--<tr>-->
+                        <!--<td>Name</td>-->
+                        <!--<td class="text-center">Expression (TPM)</td>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody class="p-2 leading-loose text-sm">-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">KRAS</td>-->
+                        <!--<td class="py-2 text-center">5</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">TP53</td>-->
+                        <!--<td class="py-2 text-center">3</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td class="py-2">SMAD4</td>-->
+                        <!--<td class="py-2 text-center">1</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
 
-        <div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">
+        <!--<div class="hidden px-6 md:px-0 mt-4 md:flex flex-wrap order-1 md:-order-1 md:shadow-md js-tab-pane" id="section-stats">-->
 
-            <div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h1>hCf_GGAGAGCTGATT</h1>
-                <div class="flex">
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Cell Subtype</p>
-                        <p class="font-medium text-sm pl-2">ASC2</p>
-                    </div>
-                    <div class="w-1/2">
-                        <p class="text-indigo text-sm p-2">Number of Genes</p>
-                        <p class="font-medium text-sm pl-2">599</p>
-                    </div>
-                </div>
-                <div class="pt-6">
-                    <p class="text-indigo text-sm p-2">Number of Transcripts</p>
-                    <p class="font-medium text-sm pl-2 leading-normal">683</p>
-                </div>
-            </div>
-            <div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">
-                <h3>Top 5 Highly Expressed Genes</h3>
-                <table class="mt-4 w-full">
-                    <thead class="p-2 text-sm leading-loose border-b text-indigo">
-                    <tr>
-                        <td>Name</td>
-                        <td class="text-center">Expression (TPM)</td>
-                    </tr>
-                    </thead>
-                    <tbody class="p-2 leading-loose text-sm">
-                    <tr class="border-b">
-                        <td class="py-2">KRAS</td>
-                        <td class="py-2 text-center">5</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2">TP53</td>
-                        <td class="py-2 text-center">3</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">SMAD4</td>
-                        <td class="py-2 text-center">1</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!--<div style="padding-top:1rem" class="w-full md:w-1/2 p-4 md:pt-12 md:pl-1 mt-4 md:mt-0 lg:pt-12 lg:pl-8 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h1>hCf_GGAGAGCTGATT</h1>-->
+                <!--<div class="flex">-->
+                    <!--<div class="w-1/2">-->
+                        <!--<p class="text-indigo text-sm p-2">Cell Subtype</p>-->
+                        <!--<p class="font-medium text-sm pl-2">ASC2</p>-->
+                    <!--</div>-->
+                    <!--<div class="w-1/2">-->
+                        <!--<p class="text-indigo text-sm p-2">Number of Genes</p>-->
+                        <!--<p class="font-medium text-sm pl-2">599</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="pt-6">-->
+                    <!--<p class="text-indigo text-sm p-2">Number of Transcripts</p>-->
+                    <!--<p class="font-medium text-sm pl-2 leading-normal">683</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="p-4 px-6 w-full md:w-1/2 rounded md:rounded-r-none bg-white shadow-md md:shadow-none">-->
+                <!--<h3>Top 5 Highly Expressed Genes</h3>-->
+                <!--<table class="mt-4 w-full">-->
+                    <!--<thead class="p-2 text-sm leading-loose border-b text-indigo">-->
+                    <!--<tr>-->
+                        <!--<td>Name</td>-->
+                        <!--<td class="text-center">Expression (TPM)</td>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody class="p-2 leading-loose text-sm">-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">KRAS</td>-->
+                        <!--<td class="py-2 text-center">5</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="border-b">-->
+                        <!--<td class="py-2">TP53</td>-->
+                        <!--<td class="py-2 text-center">3</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td class="py-2">SMAD4</td>-->
+                        <!--<td class="py-2 text-center">1</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
         <!-- Filter -->
         <!--<div class="px-6 md:px-0 flex items-baseline justify-between border-b-2 border-grey-light mt-6 order-0 lg:order-1">-->
             <!--<h4 class="hidden md:inline-block text-grey-dark font-normal">Books</h4>-->
