@@ -55,7 +55,7 @@ In this file, *fast_ranking* method takes input query as a parameter and fetches
 We have created a web application to make it easier for the users to search the cells and view the results accrodingly. The web application is created using Pythin Django framework. The implementation of the web application is present under scSearch/engine directory.
 
 ## Usage
-To use the application, please follow the set up instructions first. Once installed, navigate to the eb page mentioned and enter some cells in the search text box provided. Say for example add the terms "KRAS", "CDN4K" and "TP53" and click "Search". The cells that match to the corresponding genes will be displayed on the right. The results will be empty if the input genes doesn't match the any of the cells in the corpus.
+To use the application, please follow the set up instructions first. Once installed, navigate to the web page mentioned and enter some genes in the search text box provided. Say for example add the genes "KRAS", "CDN4K" and "TP53" and click "Search". The cells that match  the corresponding genes will be displayed on the right. The results will be empty if the input genes doesn't match the any of the cells in the corpus.
 
 ## Team Members
 * Dominic Fitzgerald (df6)
