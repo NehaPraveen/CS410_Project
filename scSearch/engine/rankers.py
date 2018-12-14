@@ -15,8 +15,12 @@ def bm25_score(q, d_counts, k=300, n_docs=14963):
     score = 0
     for word in words:
         t1 = q_counts[word]
-        t2 = ((k+1) * d_counts[word]) / (d_counts[word] + k)
-        t3 = np.log((n_docs+1) / (document_frequency(word)))
+        try:
+            t2 = ((k+1) * d_counts[word]) / (d_counts[word] + k)
+            t3 = np.log((n_docs + 1) / (document_frequency(word)))
+        except ZeroDivisionError:
+            t2 = 0
+            t3 = 0
         score += t1 * t2 * t3
 
     return score

@@ -30,7 +30,8 @@
             <tbody class="p-2 leading-loose text-sm">
             {% for gene in result.top_five_genes %}
             <tr class="border-b">
-                <td class="py-2">{{gene.0}}</td>
+                <td class="py-2">
+                    <a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene={{gene.0}}">{{gene.0}}</a></td>
                 <td class="py-2 text-center">{{gene.1}}</td>
             </tr>
             {% endfor %}
