@@ -5,19 +5,17 @@ from django.db import models
 
 class Cell(models.Model):
     name = models.CharField(max_length=256, unique=True)
+    num_genes = models.IntegerField()
+    num_transcripts = models.IntegerField()
+    subtype = models.CharField(max_length=128)
 
-    def get_gene_count(self, gene_name):
-        self.genecount_set.filter(gene__name=gene_name)
+    def get_top_k_genes(self, k=5):
+        top_k = sorted(self.invertedindex_set.all(), key=lambda r: r.term_freq, reverse=True)[:5]
+        return [(g.term_id.name, g.term_freq) for g in top_k]
 
 
 class Gene(models.Model):
     name = models.CharField(max_length=64, unique=True)
-
-
-class GeneCount(models.Model):
-    cell = models.ForeignKey('Cell', on_delete=models.CASCADE)
-    gene = models.ForeignKey('Gene', on_delete=models.CASCADE)
-    count = models.FloatField()
 
 
 class InvertedIndex(models.Model):

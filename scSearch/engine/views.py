@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from engine.rankers import fast_ranking
+from engine.models import Cell
 
 import json
 
@@ -27,19 +28,14 @@ def search_results_ajax(request, json_query_str):
     ranking = [r[0] for r in fast_ranking(query, top_k=10)]
 
     results = list()
-    for i, cell in enumerate(ranking, start=1):
+    for i, cell_name in enumerate(ranking, start=1):
+        cell = Cell.objects.get(name=cell_name)
         results.append({
-            'name': cell,
-            'subtype': 'Subtype Placeholder',
-            'num_genes': '6',
-            'num_transcripts': '8',
-            'top_five_genes': [
-                ['KRAS', '5'],
-                ['TP53', '3'],
-                ['SMAD4', '18'],
-                ['CDNK4D', '9'],
-                ['MMN', '2']
-            ]
+            'name': cell_name,
+            'subtype': cell.subtype,
+            'num_genes': cell.num_genes,
+            'num_transcripts': cell.num_transcripts,
+            'top_five_genes': cell.get_top_k_genes(k=5)
         })
 
     return render(request, 'engine/search_result.html', context={'results': results})
