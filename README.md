@@ -33,6 +33,12 @@ Then point your browser to
 http://localhost:8000/engine/
 ```
 
+Alternatively, there is a live version available at 
+
+```text
+http://djf604.com:8000/engine/
+```
+
 ## Introduction
 
 Single-cell RNA sequencing (scRNAseq) is a relatively novel biotechnology which isolates individual cells before 
