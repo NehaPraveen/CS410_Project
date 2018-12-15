@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 
 from engine.rankers import fast_ranking
 from engine.models import Cell

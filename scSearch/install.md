@@ -23,7 +23,7 @@ This file should be downloaded and dropped alongside ``manage.py``
 After the database is in place, activate your environment and run
 
 ```text
-python manage.py
+python manage.py runserver
 ```
 Then point your browser to 
 
